@@ -1,0 +1,11 @@
+- name: Update apt
+  apt: update_cache=yes
+
+- name: Upgrade System
+  apt: upgrade=dist
+
+- name: Install System Packages
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - curl
+    - fail2ban

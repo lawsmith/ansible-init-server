@@ -1,0 +1,7 @@
+- name: Setup User Account
+  user: name={{ users.username}} password={{ users.password }} comment="System"
+
+- name: Create User SSH Folder
+  file: path=/home/{{ users.username }}/.ssh state=directory owner={{ users.username }} mode=0700
+
+# TODO: Setup SSH authorized_keys file

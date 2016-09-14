@@ -1,0 +1,12 @@
+---
+base:
+  install: '1'
+  timezone: America/Vancouver
+  locale: en_US.UTF-8
+firewall:
+  install: '1'
+  ports: [80, 443, 22, 9140]
+users:
+  install: '1'
+  username: 'deploy'
+  password: '$6$rounds=656000$fKHT0sp6466.OZzW$Sp0dqMCS8xxxP1S.0osbsJlkuD9U6DbSc.LMAB6eLSfXQZtbp1f.ukrI2dicJ/aL.EKvSd0pLYxSwtcXazhiU0'
