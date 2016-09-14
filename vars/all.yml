@@ -1,8 +1,9 @@
 ---
 base:
   install: '1'
-  timezone: America/Vancouver
-  locale: en_US.UTF-8
+  packages: [
+    'fail2ban'
+  ]
 firewall:
   install: '1'
   ports: [80, 443, 22, 9140]

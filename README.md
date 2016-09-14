@@ -6,7 +6,7 @@ To get ansible to run on your server, copy the template file located at `./inven
 
 Once that's done, run the playbook with the following command
 ```
-./ansible-playbook playbook.yml -i inventories/server
+ansible-playbook playbook.yml -i inventories/server
 ```
 
 ## Generating a User Password

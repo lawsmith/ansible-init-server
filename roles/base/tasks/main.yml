@@ -1,4 +1,4 @@
-- name: Update apt
+- name: Apt-Get Update
   apt: update_cache=yes
 
 - name: Upgrade System
@@ -6,6 +6,5 @@
 
 - name: Install System Packages
   apt: pkg={{ item }} state=latest
-  with_items:
-    - curl
-    - fail2ban
+  with_items: '{{ base.packages }}'
+  when: base.packages is defined
