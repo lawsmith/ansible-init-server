@@ -2,8 +2,8 @@
   apt: pkg="ufw" state=latest
 
 - name: Simple configuration for UFW
-  shell: ufw allow {{ item }}
+  ufw: rule=allow port={{ item }}
   with_items: "{{ firewall.ports }}"
 
 - name: Enable UFW
-  shell: ufw enable
+  ufw: state=enabled

@@ -4,9 +4,13 @@ Despite it's long name, this is a basic ansible playbook for doing some initial 
 ## Running ansible playbook
 To get ansible to run on your server, copy the template file located at `./inventories/template` to `./inventories/server`. Then replace the _ENTER-IP-HERE_ with your server's IP address.
 
-Once that's done, run the playbook with the following command
+Once that's done, run the playbook with one of the following commands. The first one assumes there is already a SSH key active.
 ```
 ansible-playbook playbook.yml -i inventories/server
+```
+
+```
+ansible-playbook playbook.yml -i inventories/server --ask-pass
 ```
 
 ## Generating a User Password

@@ -1,7 +1,14 @@
 - name: Setup User Account
-  user: name={{ users.username}} password={{ users.password }} comment="System"
+  user: name={{ users.username }} password={{ users.password }} comment="System"
 
 - name: Create User SSH Folder
   file: path=/home/{{ users.username }}/.ssh state=directory owner={{ users.username }} mode=0700
 
-# TODO: Setup SSH authorized_keys file
+- name: Copy Public Key to Remote
+  authorized_key: user=deploy key=" {{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }} "
+
+- name: Make SSH more secure
+  template: src=sshd_config.j2 dest=/etc/ssh/sshd_config.test owner=root group=root mode="u=rw,g=r,o=r"
+
+- name: Restart SSH service
+  service: name=ssh state=restarted
