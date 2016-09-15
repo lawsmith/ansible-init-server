@@ -6,7 +6,7 @@ base:
   ]
 firewall:
   install: '1'
-  ports: [80, 443, 22, 9140]
+  ports: [80, 443, 22]
 users:
   install: '1'
   username: 'deploy'

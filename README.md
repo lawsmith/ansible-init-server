@@ -1,29 +1,26 @@
 # Initial Server Setup Playbook
-Despite it's long name, this is a basic ansible playbook for doing some initial setup on a server by creating a lower privileged user and locking the system down.
+This is my constantly changing playground for setting up a basic ubuntu box using ansible.
 
-## Running ansible playbook
-To get ansible to run on your server, copy the template file located at `./inventories/template` to `./inventories/server`. Then replace the _ENTER-IP-HERE_ with your server's IP address.
+## What does this playbook do?
+- Sets up an unprivileged user account
+- Disables direct SSH login with root
+- Forces public key authentication for SSH
+- Enables Ubuntu's UFW
 
-Once that's done, run the playbook with one of the following commands. The first one assumes there is already a SSH key active.
+## Running the playbook
+Currently this playbook requires using a root or superuser account for all tasks to complete successfully. I've made a template inventory file inside of `./inventories` that made be duplicated and used. There are two ways I recommend running ansible, depending on your initial server setup.
+
+The first option assumes that the root account already has a public key
 ```
 ansible-playbook playbook.yml -i inventories/server
 ```
 
+The second option assumes that the root account is using a plain text password
 ```
 ansible-playbook playbook.yml -i inventories/server --ask-pass
 ```
 
-## Generating a User Password
-This playbook sets up a user account with a password. Instead of displaying the password in plain text within the playbook, we're using python's hashed password function.
+## Editing Environment Variables
+All env vars are found within `./vars/all.yml`.
 
-### Install passlib
-```
-pip2 install passlib
-```
-
-### Generate password
-```
-python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.encrypt(getpass.getpass())"
-```
-
-Copy the value given and replace the password under the users host within  `./vars/all.yml`
+I recommend at least changing the users password because it is a hashed password. To change it, check out the ansible [FAQ's](http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module) under the "How do I generate crypted passwords for the user module?" section.
