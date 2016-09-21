@@ -1,0 +1,11 @@
+- name: Apt-Get Update
+  apt: update_cache=yes
+
+- name: Install Nginx Web Server
+  apt: pkg="nginx" state=latest
+
+- name: Allow Nginx web ports
+  ufw: rule=allow port={{ item }}
+  with_items:
+    - 80
+    - 443

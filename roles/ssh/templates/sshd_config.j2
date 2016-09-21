@@ -1,5 +1,5 @@
 # What ports, IPs and protocols we listen for
-Port {{ users.ssh_port }}
+Port {{ ssh.port }}
 # Use these options to restrict which interfaces/protocols sshd will bind to
 #ListenAddress ::
 #ListenAddress 0.0.0.0
@@ -22,7 +22,7 @@ LogLevel INFO
 
 # Authentication:
 LoginGraceTime 120
-PermitRootLogin {{ users.permit_root_login }}
+PermitRootLogin {{ ssh.permit_root_login }}
 StrictModes yes
 
 RSAAuthentication yes
@@ -43,7 +43,7 @@ PermitEmptyPasswords no
 ChallengeResponseAuthentication no
 
 # Change to no to disable tunnelled clear text passwords
-PasswordAuthentication {{ users.allow_password_auth }}
+PasswordAuthentication {{ ssh.allow_password_auth }}
 
 X11Forwarding yes
 X11DisplayOffset 10

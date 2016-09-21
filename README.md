@@ -3,15 +3,17 @@ This is my constantly changing playground for setting up a ubuntu box using ansi
 
 
 ## What does this playbook do (so far)?
-- Creates an unprivileged user account
-- Disables direct SSH login with root
-- Forces public key authentication for SSH
-- Enables Ubuntu's UFW
-- Installs Fail2Ban for added security
+| Role          | Description
+|---------------|----------------------------------------------------------------------
+| base          | Runs updates, installs fail2ban, and UFW
+| compatibility | Installs python2 for ansible to work on ubuntu 16
+| users         | Creates an unprivileged user account with a public key
+| ssh           | Locks down SSH to disable direct root login and plaintext passwords
+| nginx         | Installs and configures Nginx
 
 
 ## Running the playbook
-This playbook currently requires using a superuser account for all tasks to complete successfully. A template inventory is provided inside of `./inventories` that may be duplicated and used. 
+This playbook currently requires using a superuser account for all tasks to complete successfully. A template inventory is provided inside of `./inventories` that may be duplicated and used.
 
 Running the ansible playbook may be achieved with the following command:
 ```
