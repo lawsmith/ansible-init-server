@@ -4,7 +4,8 @@
 - name: Upgrade System
   apt: upgrade=dist
 
-- name: Install System Packages
-  apt: pkg={{ item }} state=latest
-  with_items: '{{ base.packages }}'
-  when: base.packages is defined
+- name: Install Fail2Ban
+  apt: pkg="fail2ban" state=latest
+
+- name: Install Ubuntu UncomplicatedFirewall (UFW)
+  apt: pkg="ufw" state=latest

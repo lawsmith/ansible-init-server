@@ -5,7 +5,6 @@
   vars_files:
     - vars/all.yml
   roles:
-    - python
+    - compatibility   # installs python2 on ubuntu 16 so that ansible will actually work
     - base
     - users
-    - firewall

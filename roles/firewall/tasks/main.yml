@@ -1,9 +1,0 @@
-- name: Install Ubuntu UncomplicatedFirewall (UFW)
-  apt: pkg="ufw" state=latest
-
-- name: Simple configuration for UFW
-  ufw: rule=allow port={{ item }}
-  with_items: "{{ firewall.ports }}"
-
-- name: Enable UFW
-  ufw: state=enabled

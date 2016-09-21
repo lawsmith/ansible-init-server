@@ -1,16 +1,7 @@
 ---
-base:
-  install: '1'
-  packages: [
-    'fail2ban'
-  ]
-firewall:
-  install: '1'
-  ports: [80, 443, 22]
 users:
-  install: '1'
   username: 'deploy'
   password: '$6$rounds=656000$fKHT0sp6466.OZzW$Sp0dqMCS8xxxP1S.0osbsJlkuD9U6DbSc.LMAB6eLSfXQZtbp1f.ukrI2dicJ/aL.EKvSd0pLYxSwtcXazhiU0'
   ssh_port: 22
-  permit_root: 'no'
-  password_auth: 'no'
+  permit_root_login: 'no'
+  allow_password_auth: 'no'
