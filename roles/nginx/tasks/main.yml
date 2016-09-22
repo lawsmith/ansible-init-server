@@ -9,3 +9,12 @@
   with_items:
     - 80
     - 443
+
+- name: Setup site configuration
+  template: src=site_config.j2 dest=/etc/nginx/sites-available/{{ nginx.domain }} owner=root group=root mode="u=rw,g=r,o=r"
+
+- name: Create symlink to enable site
+  file: src=/etc/nginx/sites-available/{{ nginx.domain }} dest=/etc/nginx/sites-enabled/{{ nginx.domain }} state=link
+
+- name: Restart Nginx service
+  service: name=nginx state=restarted

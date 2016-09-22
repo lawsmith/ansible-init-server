@@ -7,6 +7,6 @@
   roles:
     - compatibility   # installs python2 on ubuntu 16 that way ansible will actually work
     - base
-    - users
+    - user
     - ssh
     - nginx

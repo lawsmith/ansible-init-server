@@ -6,3 +6,5 @@ ssh:
   port: 22
   permit_root_login: 'no'
   allow_password_auth: 'no'
+nginx:
+  domain: 'smith.cm'
