@@ -18,7 +18,7 @@ This playbook currently requires using a superuser account for all tasks to comp
 
 Running the ansible playbook may be achieved with the following command:
 ```
-ansible-playbook playbook.yml -i inventories/server
+ansible-playbook playbook.yml -i inventories/enter-filename-here
 ```
 
 If the superuser account doesn't have a public key and is setup instead with a plain text password, ansible will need to be ran using the `--ask-pass` argument.
