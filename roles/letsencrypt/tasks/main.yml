@@ -4,14 +4,20 @@
 - name: Stop Nginx service
   service: name=nginx state=stopped
 
+- name: Check if Certs have already been generated
+  stat: path=/etc/letsencrypt/live/{{ letsencrypt.domain }}/fullchain.pem
+  register: check_cert
+
 - name: Run Letsencrypt (Standalone)
   shell: "letsencrypt certonly --standalone -d {{ letsencrypt.domain }} -d www.{{ letsencrypt.domain }} --email {{ letsencrypt.email }} --non-interactive --agree-tos"
+  when: check_cert.stat.exists == False
 
 - name: Start Nginx service
   service: name=nginx state=started
 
 - name: Run Letsencrypt (Webroot)
   shell: "letsencrypt certonly --webroot -w /var/www/{{ letsencrypt.domain }}/html -d {{ letsencrypt.domain }} -d www.{{ letsencrypt.domain }} --email {{ letsencrypt.email }} --non-interactive --agree-tos"
+  when: check_cert.stat.exists == False
 
 - name: Restart Nginx service
   service: name=nginx state=restarted
