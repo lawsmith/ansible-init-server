@@ -8,3 +8,7 @@ ssh:
   allow_password_auth: 'no'
 nginx:
   domain: 'smith.cm'
+letsencrypt:
+  username: 'deploy'
+  email: 'anthony@smith.cm'
+  domain: 'smith.cm'

@@ -10,6 +10,7 @@ This is my constantly changing playground for setting up a ubuntu box using ansi
 | users         | Creates an unprivileged user account with a public key
 | ssh           | Locks down SSH to disable direct root login and plaintext passwords
 | nginx         | Installs and configures Nginx
+| letsencrypt   | Installs and configured SSL certificate from Letsencrypt
 
 
 ## Running the playbook

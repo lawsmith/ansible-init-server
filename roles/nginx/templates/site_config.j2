@@ -1,11 +1,27 @@
 server {
-    listen 80;
-    root /var/www/{{ nginx.domain }}/html;
-    server_name {{ nginx.domain }} www.{{ nginx.domain }};
+  listen 443;
+  root /var/www/{{ nginx.domain }}/html;
+  server_name {{ nginx.domain }} www.{{ nginx.domain }};
 
-    location / {
-        # First attempt to serve request as file, then
-        # as directory, then fall back to displaying a 404.
-        try_files $uri $uri/ =404;
-    }
+  ssl on;
+  ssl_certificate      /etc/letsencrypt/live/{{ nginx.domain }}/fullchain.pem;
+  ssl_certificate_key  /etc/letsencrypt/live/{{ nginx.domain }}/privkey.pem;
+  #ssl_prefer_server_ciphers On;
+  #ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  #ssl_session_cache shared:SSL:10m;
+
+  #access_log  /var/log/nginx/access.{{ nginx.domain }}.log  main;
+  #error_log   /var/log/nginx/error.{{ nginx.domain }}.log;
+
+  location / {
+    # First attempt to serve request as file, then
+    # as directory, then fall back to displaying a 404.
+    try_files $uri $uri/ =404;
+  }
+}
+
+server {
+  listen 80;
+  server_name {{ nginx.domain }} www.{{ nginx.domain}};
+  return 301 https://$host$request_uri;
 }

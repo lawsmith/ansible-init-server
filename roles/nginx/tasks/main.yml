@@ -16,5 +16,5 @@
 - name: Create symlink to enable site
   file: src=/etc/nginx/sites-available/{{ nginx.domain }} dest=/etc/nginx/sites-enabled/{{ nginx.domain }} state=link
 
-- name: Restart Nginx service
-  service: name=nginx state=restarted
+- name: Creating directory for website
+  file: path=/var/www/{{ nginx.domain }}/html state=directory owner=root mode=0655
