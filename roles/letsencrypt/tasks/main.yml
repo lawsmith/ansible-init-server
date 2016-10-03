@@ -21,3 +21,21 @@
 
 - name: Restart Nginx service
   service: name=nginx state=restarted
+
+- name: Setup Cronjob to check Certs every month
+  cron: name="renew letsencrypt"
+      hour=2
+      minute=30
+      weekday=1
+      user={{ letsencrypt.username }}
+      job="/opt/letsencrypt/letsencrypt-auto renew >> /var/log/le-renew.log"
+      state=present
+
+- name: Setup Cronjob to restart nginx
+  cron: name="restart nginx"
+      hour=2
+      minute=40
+      weekday=1
+      user={{ letsencrypt.username }}
+      job="/etc/init.d/nginx reload"
+      state=present
