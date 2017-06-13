@@ -27,4 +27,7 @@ If the superuser account doesn't have a public key and is setup instead with a p
 ## Editing Environment Variables
 All env vars are found within `./vars/all.yml`.
 
-I recommend at least changing the users password because it is a hashed password. To change it, check out the ansible [FAQ's](http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module) under the "How do I generate crypted passwords for the user module?" section.
+I recommend at least changing the users password because it is a hashed password. To change it, make sure that the python module `passlib` installed. And then run the following command:
+```Python
+python -c 'from passlib.hash import sha512_crypt; print sha512_crypt.encrypt("password")'
+```

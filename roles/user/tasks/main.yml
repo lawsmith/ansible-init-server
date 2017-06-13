@@ -1,5 +1,5 @@
 - name: Setup User Account
-  user: name={{ user.username }} password={{ user.password }} comment="System"
+  user: name={{ user.username }} password={{ user.password }} comment="System" groups="sudo"
 
 - name: Create User SSH Folder
   file: path=/home/{{ user.username }}/.ssh state=directory owner={{ user.username }} mode=0700

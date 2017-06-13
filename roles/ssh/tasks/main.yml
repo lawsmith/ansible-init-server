@@ -1,5 +1,5 @@
 - name: Locking down SSH user login
-  template: src=sshd_config.j2 dest=/etc/ssh/sshd_config.test owner=root group=root mode="u=rw,g=r,o=r"
+  template: src=sshd_config.j2 dest=/etc/ssh/sshd_config owner=root group=root mode="u=rw,g=r,o=r"
 
 - name: Restart SSH service
   service: name=ssh state=restarted
