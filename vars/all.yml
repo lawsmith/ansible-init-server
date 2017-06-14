@@ -1,0 +1,29 @@
+# By default, the variables are read from the management machine's environment
+#
+# The password value is a hashed string. To change it, make sure that the python module `passlib` installed.
+#
+# Then run the following command:
+# python -c 'from passlib.hash import sha512_crypt; print sha512_crypt.encrypt("password")'
+#
+# It will output a hashed string
+---
+user:
+  username: "{{ lookup('env', 'ANSIBLE_USERNAME') }}"
+  password: "{{ lookup('env', 'ANSIBLE_PASSWORD') }}"
+ssh:
+  port: 22
+  permit_root_login: 'no'
+  allow_password_auth: 'no'
+nginx:
+  domain: "{{ lookup('env', 'ANSIBLE_DOMAIN') }}"
+letsencrypt:
+  username: "{{ lookup('env', 'ANSIBLE_USERNAME') }}"
+  email: "{{ lookup('env', 'ANSIBLE_EMAIL') }}"
+  domain: "{{ lookup('env', 'ANSIBLE_DOMAIN') }}"
+firewall:
+  default_incoming: 'deny'
+  default_outgoing: 'allow'
+  ports: 
+    - rule: 'allow'
+      port: '22'
+      proto: 'tcp'

@@ -1,5 +1,5 @@
 # Initial Server Setup Playbook
-This is my constantly changing playground for setting up a ubuntu box using ansible.
+This is my constantly changing playground for setting up an ubuntu box using ansible.
 
 
 ## What does this playbook do (so far)?
@@ -11,6 +11,7 @@ This is my constantly changing playground for setting up a ubuntu box using ansi
 | ssh           | Locks down SSH to disable direct root login and plaintext passwords
 | nginx         | Installs and configures Nginx
 | letsencrypt   | Installs and configured SSL certificate from Letsencrypt
+| firewall      | Sets up UFW and allows specified ports through
 
 
 ## Running the playbook
@@ -18,16 +19,9 @@ This playbook currently requires using a superuser account for all tasks to comp
 
 Running the ansible playbook may be achieved with the following command:
 ```
-ansible-playbook playbook.yml -i inventories/enter-filename-here
+ansible-playbook playbook.yml -i inventories/ENTER_HOSTFILE_HERE
 ```
-
-If the superuser account doesn't have a public key and is setup instead with a plain text password, ansible will need to be ran using the `--ask-pass` argument.
 
 
 ## Editing Environment Variables
-All env vars are found within `./vars/all.yml`.
-
-I recommend at least changing the users password because it is a hashed password. To change it, make sure that the python module `passlib` installed. And then run the following command:
-```Python
-python -c 'from passlib.hash import sha512_crypt; print sha512_crypt.encrypt("password")'
-```
+All variables are found within `./vars/all.yml`. I opted for using Ansibles `lookup` method for using environment variables on the management machine.
