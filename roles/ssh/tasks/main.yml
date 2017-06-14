@@ -3,9 +3,3 @@
 
 - name: Restart SSH service
   service: name=ssh state=restarted
-
-- name: Allow SSH Port through UFW
-  ufw: rule=allow port={{ ssh.port }}
-
-- name: Make sure UFW is enabled after allowing the port
-  ufw: state=enabled

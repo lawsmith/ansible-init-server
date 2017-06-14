@@ -1,0 +1,21 @@
+- name: Apt-Get Update
+  apt: update_cache=yes
+
+- name: Install Ubuntu UncomplicatedFirewall (UFW)
+  apt: pkg="ufw" state=latest
+
+- name: Configure UFW defaults
+  ufw: direction={{ item.direction }} policy={{ item.policy }}
+  with_items:
+    - { direction: 'incoming', policy: '{{ firewall.default_incoming }}' }
+    - { direction: 'outgoing', policy: '{{ firewall.default_outgoing }}' }
+
+- name: Configure ufw rules
+  ufw: rule={{ item.rule }} port={{ item.port }} proto={{ item.proto }}
+  with_items: '{{ firewall.ports }}'
+
+- name: Enable UFW logging
+  ufw: logging=on
+
+- name: Enable UFW
+  ufw: state=enabled

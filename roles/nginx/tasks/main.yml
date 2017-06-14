@@ -4,12 +4,6 @@
 - name: Install Nginx Web Server
   apt: pkg="nginx" state=latest
 
-- name: Allow Nginx web ports
-  ufw: rule=allow port={{ item }}
-  with_items:
-    - 80
-    - 443
-
 - name: Setup site configuration
   template: src=site_config.j2 dest=/etc/nginx/sites-available/{{ nginx.domain }} owner=root group=root mode="u=rw,g=r,o=r"
 

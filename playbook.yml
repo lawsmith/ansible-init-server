@@ -11,3 +11,4 @@
     - ssh
     - nginx
     - letsencrypt
+    - firewall
